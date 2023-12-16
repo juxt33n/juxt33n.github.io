@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+  </head>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+    crossorigin="anonymous"
+  />
+  <body>
+    <div class="container">
+      <div class="card mt-5 w-3">
+        <div class="card-header">
+          <h3>Input form validation</h3>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <label for="FullNameInput" class="form-label">Full Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="FullNameInput"
+              placeholder="Full Name"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="ageInput" class="form-label">Age</label>
+            <input
+              type="number"
+              class="form-control"
+              id="ageInput"
+              placeholder="Age"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="emailInput" class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="emailInput"
+              placeholder="name@example.com"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="dobInput" class="form-label">Date Of Birth</label>
+            <input
+              type="date"
+              class="form-control"
+              id="dobInput"
+              placeholder="mm/dd/yyyy"
+            />
+          </div>
+
+          <label for="form-Progress" class="form-label">Progress Bar:</label>
+          <div
+            class="progress"
+            role="progressbar"
+            aria-label="Example with label"
+            aria-valuenow="25"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          >
+            <div id="formProgress" class="progress-bar" style="width: 0%">
+              0 %
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const fullNameInput = document.getElementById("FullNameInput");
+      const ageInput = document.getElementById("ageInput");
+      const emailInput = document.getElementById("emailInput");
+      const dobInput = document.getElementById("dobInput");
+      const formProgress = document.getElementById("formProgress");
+
+      // this function allows the progress bar to be updated for every valid input
+      function updateProgressBar(validCount, totalInputs) {
+        const progress = (validCount / totalInputs) * 100;
+        formProgress.style.width = progress + "%";
+        formProgress.innerText = progress + "%";
+      }
+
+      // function created to validate the name input
+      function validateFullName() {
+        const fullNameValue = fullNameInput.value;
+        const isValid = /^[A-Za-z\s]+$/.test(fullNameValue);
+        fullNameInput.classList.remove("is-invalid", "is-valid");
+        fullNameInput.classList.add(isValid ? "is-valid" : "is-invalid");
+        validateForm();
+      }
+
+      // function created to validate the age input, I've set a max of 100 to the age input
+      function validateAge() {
+        const ageValue = ageInput.value;
+        if (ageValue === "") {
+          ageInput.classList.remove("is-valid", "is-invalid");
+        } else {
+          const age = parseInt(ageValue);
+          if (!isNaN(age) && age >= 0 && age <= 100) {
+            ageInput.classList.remove("is-invalid");
+            ageInput.classList.add("is-valid");
+          } else {
+            ageInput.classList.remove("is-valid");
+            ageInput.classList.add("is-invalid");
+          }
+        }
+        validateForm();
+      }
+
+      //function created to validate the email input
+      function validateEmail() {
+        const emailValue = emailInput.value;
+        const isValid =
+          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(emailValue);
+        emailInput.classList.remove("is-invalid", "is-valid");
+        emailInput.classList.add(isValid ? "is-valid" : "is-invalid");
+        validateForm();
+      }
+
+      // function created to validate user's DOB
+      function validateDOB() {
+        const dobValue = dobInput.value;
+        if (dobValue) {
+          dobInput.classList.remove("is-invalid");
+          dobInput.classList.add("is-valid");
+          validateForm();
+        } else {
+          dobInput.classList.remove("is-valid");
+          dobInput.classList.add("is-invalid");
+        }
+      }
+
+      dobInput.addEventListener("input", validateDOB);
+
+      // this function is used to validate the entire form...
+      function validateForm() {
+        const inputs = [fullNameInput, ageInput, emailInput, dobInput];
+        let validCount = 0;
+
+        inputs.forEach((input) => {
+          if (input.value) {
+            if (input.classList.contains("is-valid")) {
+              validCount++;
+            }
+          }
+        });
+
+        updateProgressBar(validCount, inputs.length);
+      }
+
+      fullNameInput.addEventListener("input", validateFullName);
+      ageInput.addEventListener("input", validateAge);
+      emailInput.addEventListener("input", validateEmail);
+      dobInput.addEventListener("input", validateDOB);
+    });
+  </script>
+</html>
