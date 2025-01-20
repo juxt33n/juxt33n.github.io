@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mobile Legends: Bang Bang Philippines</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="topnav">
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="page2.html">MPLPH Season 13</a></li>
+          <li><a href="page3.html">Redeem</a></li>
+        </ul>
+      </nav>
+    </div>
+    <header>
+      <h1>Get a chance to win an Epic Skin! 😱🎉</h1>
+    </header>
+    <main>
+      <h2>
+        Don't have a code yet? Get a free one just right below and try your luck! 👇🏻
+      </h2>
+      <h4>
+        To redeem codes, you'll first have to open the game and the Mobile Legends code exchange page.
+      </h4>
+
+      <p>Please enter your redeem code:</p>
+    <input
+      type="text"
+      id="redeemCode"
+      placeholder="Enter your redeem code..."
+    />
+    <button onclick="checkRedeemCode()">Redeem</button>
+    <div id="result"></div>
+
+      <img class="redeemskin" src="skinz.jpg" alt="Image 3" />
+      <img class="redeemskin" src="redeem.webp" alt="Image 1" />
+
+      <p>Mag-recharge para i-activate ang purchase privilege! <a href="https://www.codashop.com/en-ph/mobile-legends?utm_source=google&utm_medium=cpc&utm_campaign=20484141263&utm_content=670922359649&utm_term=mlbb%20diamond%20recharge&gad_source=1&gclid=Cj0KCQiAoeGuBhCBARIsAGfKY7yU5TAiim0_27QmTXPlNLNe-Ix0WyPrfS_622RoZCTYPriL53fjC78aArPJEALw_wcB">Buy MLBB Diamonds here!</a></p>
+      <hr />
+      <p id="content">
+        Get a chance to win a skin by clicking the button below!
+        <ul>
+          <li>Sakura Wishes - Guinevere</li>
+          <li>Angelic Agent - Lesley</li>
+          <li>Pixel Blast - Wanwan</li>
+        </ul>
+      </p>
+      <br />
+      <button onclick="changeContent()">Generate a code!</button>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
